@@ -1,43 +1,65 @@
 let mainContainer = document.querySelector('.main-container');
 
+colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+colorIndex = 0;
+
 let numCells = 16;
 
-let gridrows = [];
-
-for (let i = 0; i < numCells; i++) {
-    let gridrow = document.createElement('div');
-    for (let j = 0; j < numCells; j++) {
-        let gridcell = document.createElement('div');
-        gridcell.classList.add('grid-cell');
-        gridrow.appendChild(gridcell);
-    }
-
-    gridrow.classList.add('grid-row');
-    gridrows[i] = gridrow;
-}
-
-mainContainer.append(...gridrows);
-
-let cells = document.querySelectorAll('.grid-cell');
+generateGrid(16);
 resizeGrid();
 
 window.addEventListener("resize", resizeGrid);
 
-function resizeGrid() {
-    let height = document.documentElement.clientHeight;
-    let width = document.documentElement.clientWidth;
-    console.log("Width: %d, Height: %d", width, height);
+function generateGrid(numCells) {
+    for (let i = 0; i < numCells; i++) {
+        let gridrow = document.createElement('div');
+        for (let j = 0; j < numCells; j++) {
+            let gridcell = document.createElement('div');
+            gridcell.classList.add('grid-cell');
+            gridcell.addEventListener('mouseover', function() {setColor(gridcell)});
+            gridrow.appendChild(gridcell);
+        }
+    
+        gridrow.classList.add('grid-row');
+        mainContainer.appendChild(gridrow);
+    }
+}
 
-    let maxWidth = Math.min(height, width);
-    let cellSize = Math.floor(maxWidth / numCells);
+function getRows() {
+    return document.querySelectorAll('.grid-row');
+}
+
+function getCells() {
+    return document.querySelectorAll('.grid-cell');
+}
+
+function resizeGrid() {
+    let height = document.documentElement.clientHeight / 1.5;
+    let width = document.documentElement.clientWidth / 1.5;
+
+    let dim = Math.min(height, width);
+    console.log(dim);
+    dim = Math.floor(dim / numCells) * numCells;
+    mainContainer.style.height = dim + "px";
+    mainContainer.style.width = dim + "px";
+
+    let cellSize = dim / numCells;
     console.log("CellSize: %d", cellSize);
+
+    let cells = getCells();
+    let gridrows = getRows();
     
     for (const cell of cells) {
         cell.style.width, cell.style.height = cellSize + "px";
     }
 
     for (const gridrow of gridrows) {
-        gridrow.style.width = maxWidth + "px";
+        gridrow.style.width = dim + "px";
     }
+}
+
+function setColor(cell) {
+    cell.style.backgroundColor = colors[colorIndex];
+    colorIndex = (colorIndex + 1) % colors.length;
 }
 

@@ -7,6 +7,9 @@ html, body {
 .main-container {
     display: flex;
     flex-direction: column;
+    background-color:rgb(220, 220, 220);
+    width: 50%;
+    height: 50%;
 }
 
 .grid-row {
@@ -16,8 +19,7 @@ html, body {
 }
 
 .grid-cell {
-    border: 2px solid black;
+    border: 1px solid rgb(100, 100, 100);
     flex: auto;
-    aspect-ratio: 1/1;
     box-sizing: border-box;
 }
