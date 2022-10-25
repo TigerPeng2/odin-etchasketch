@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-row {
+    display: flex;
+    flex: auto;
+    justify-content: flex-start;
+}
+
+.grid-cell {
+    border: 2px solid black;
+    flex: auto;
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+}
