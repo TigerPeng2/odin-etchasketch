@@ -1,6 +1,7 @@
 let mainContainer = document.querySelector('.main-container');
 let resizeButton = document.querySelector('.resize-button');
 let cellNumInput = document.querySelector('#cellnum-input');
+let clearButton = document.querySelector('.clear-button');
 
 colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
 colorIndex = 0;
@@ -21,6 +22,8 @@ resizeButton.addEventListener("click", () => {
         generateGrid(numCells);
     }
 })
+
+clearButton.addEventListener("click", clear);
 
 function generateGrid(numCells) {
     // Clear all children of the main grid
@@ -79,5 +82,12 @@ function resizeGrid() {
 function setColor(cell) {
     cell.style.backgroundColor = colors[colorIndex];
     colorIndex = (colorIndex + 1) % colors.length;
+}
+
+function clear() {
+    let cells = getCells();
+    for (const cell of cells) {
+        cell.style.backgroundColor = "";
+    }
 }
 
