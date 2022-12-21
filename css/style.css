@@ -1,7 +1,17 @@
-html, body {
+.outer {
     height: 100%;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+}
+
+.side-menu {
+    display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    align-self: stretch;
 }
 
 .main-container {
@@ -22,4 +32,8 @@ html, body {
     border: 1px solid rgb(100, 100, 100);
     flex: auto;
     box-sizing: border-box;
+}
+
+button {
+    padding: 20px 30px;
 }

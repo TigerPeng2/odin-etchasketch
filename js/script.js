@@ -1,4 +1,6 @@
 let mainContainer = document.querySelector('.main-container');
+let resizeButton = document.querySelector('.resize-button');
+let cellNumInput = document.querySelector('.cellnum-input');
 
 colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
 colorIndex = 0;
@@ -10,7 +12,23 @@ resizeGrid();
 
 window.addEventListener("resize", resizeGrid);
 
+resizeButton.addEventListener("click", () => {
+    let newNumCells = Number(cellNumInput.value);
+    if (newNumCells % 1 != 0 || newNumCells < 1 || newNumCells > 100) {
+        alert("Please enter a valid number of grid cells. Valid numbers are between 1 and 100.")
+    } else {
+        numCells = newNumCells;
+        generateGrid(numCells);
+    }
+})
+
 function generateGrid(numCells) {
+    // Clear all children of the main grid
+    while (mainContainer.firstChild) {
+        mainContainer.removeChild(mainContainer.lastChild);
+    }
+
+    // Refill the children
     for (let i = 0; i < numCells; i++) {
         let gridrow = document.createElement('div');
         for (let j = 0; j < numCells; j++) {
