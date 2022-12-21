@@ -1,6 +1,6 @@
 let mainContainer = document.querySelector('.main-container');
 let resizeButton = document.querySelector('.resize-button');
-let cellNumInput = document.querySelector('.cellnum-input');
+let cellNumInput = document.querySelector('#cellnum-input');
 
 colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
 colorIndex = 0;
